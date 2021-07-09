@@ -3,13 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>xkcd</title>
 </head>
 
 <body>
+    <header>
+        <div class="wrapper">
+            <h1>xkcd</h1>
+        </div>
+    </header>
 
+    <main>
+        <section class="wrapper">
+            <div class="comic">
+                <!-- API Response -->
+            </div>
+            <div class="buttons">
+                <button type="submit" id="prev">＜prev</button>
+                <button type="submit" id="random">random</button>
+                <button type="submit" id="next">next＞</button>
+            </div>
+            <form>
+                <p>search comic</p>
+                <label for="search" class="sr-only">search comic</label>
+                <input type="search" name="search" id="search">
+                <button type="submit">search</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrapper">
+            <p><a href="https://xkcd.com/json.html">xkcd API</a>. &copy; Rahat Rahman 2021.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
