@@ -3,8 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="author" content="Rahat Rahman">
+    <meta name="description" content="A webcomic of romance, sarcasm, math, and language.">
+    <!-- theme -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>xkcd</title>
 </head>
 
@@ -12,6 +16,7 @@
     <header>
         <div class="wrapper">
             <h1>xkcd</h1>
+            <p>A webcomic of romance, sarcasm, math, and language.</p>
         </div>
     </header>
 
@@ -28,15 +33,27 @@
             <form>
                 <p>search comic</p>
                 <label for="search" class="sr-only">search comic</label>
-                <input type="search" name="search" id="search">
+                <!-- name -->
+                <input type="search" name="search" id="search" placeholder="# 1 - 2487" autocomplete="off">
                 <button type="submit">search</button>
             </form>
+            <p class="keyboard">keyboard shortcuts:
+                <!-- update colour -->
+                <img src="icons/left-arrow.svg" alt="left arrow" title="left arrow"> prev
+                <img src="icons/space-bar.svg" alt="space bar" title="space bar"> random
+                <img src="icons/right-arrow.svg" alt="right arrow" title="right arrow"> next
+            </p>
         </section>
     </main>
 
     <footer>
         <div class="wrapper">
-            <p><a href="https://xkcd.com/json.html">xkcd API</a>. &copy; Rahat Rahman 2021.</p>
+            <p>&copy; Rahat Rahman 2021.</p>
+            <!-- update colour, target, accessibility-->
+            <!-- <div class="links">
+                <a href="https://github.com/rahatbd/xkcd"><img src="icons/git.svg" alt="github repo"></a>
+                <a href="https://xkcd.com/json.html">xkcd</a>
+            </div> -->
         </div>
     </footer>
 

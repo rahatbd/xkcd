@@ -8,12 +8,14 @@ button,input,select{margin:0}
 /* box-sizing */
 html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}
 
+/* sr-only */
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;border:0;padding:0;white-space:nowrap;clip-path:inset(100%);clip:rect(0 0 0 0);overflow:hidden}
 
 /* ⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗ */
 
 :root {
-  --background-colour-light-body: #f2f2f2;
+  /* --background-colour-light-body: #f2f2f2; */
+  --background-colour-light-body: #f1eeee;
   --background-colour-light: #dddddd;
   --text-colour-light: #404040;
 }
@@ -25,13 +27,14 @@ html {
 body {
     font-size: 2rem;
     /* font-size: clamp(1.5rem, 20vw, 3rem); */
+    font-family: 'Indie Flower', cursive;
+    letter-spacing: 1px;
     background-color: var(--background-colour-light-body);
-    /* color: var(--text-colour-light); */
+    color: var(--text-colour-light);
     display: grid;
     grid-template-rows: auto 1fr auto;
     gap: 20px;
-
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* img { */
@@ -40,10 +43,10 @@ body {
     /* max-width: 100%; */
 /* } */
 
-/* a { */
-    /* text-decoration: none; */
-    /* color: inherit; */
-/* } */
+a {
+    color: inherit;
+    text-decoration-style: wavy;
+}
 
 /* li { */
     /* list-style-type: none; */
@@ -57,85 +60,106 @@ body {
 
 header, footer {
     background-color: var(--background-colour-light);
-    color: var(--text-colour-light);
     text-align: center;
     padding: 10px;
 }
 
-section {
-    /* border: 1px solid green; */
+section, .comic {
     display: grid;
-    justify-items: center;
-    align-items: center;
+    place-items: center;
 }
 
-.comic {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-h2 {
-    margin-bottom: 10px;
-}
-
-.image {
+/* section {1945, 1994} dry*/
+section {
     /* border: 1px solid red; */
-    /* display: block; */
-    /* height: auto; */
-    margin: 20px 0;
-}
-
-.buttons {
-    /* border: 1px solid orange; */
-    display: flex;
-    justify-content: center;
+    /* grid-template-rows: 1fr auto auto auto; */
     gap: 20px;
 }
 
-/* check */
-.buttons button {
-    background-color: transparent;
-    border: 5px solid var(--background-colour-light);
-    text-transform: uppercase;
-    cursor: pointer;
-    padding: 10px 20px;
-
-    margin-bottom: 40px;
+h1 {
+    font-size: 50px;
 }
 
-/* button:hover {
+h1 + p {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+h2 {
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+h2 + p {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.buttons button {
     background-color: var(--background-colour-light);
+    border: 5px solid var(--background-colour-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-right: 20px;
+    padding: 10px 20px;
+}
+
+.buttons button:hover {
+    background-color: transparent;
+}
+
+/* .buttons button:focus {
+    outline: 5px solid var(--background-colour-light);
 } */
 
 form {
     /* border: 1px solid crimson; */
     font-size: 0;
-    /* font-size: 2rem; */
+    letter-spacing: 0;
 }
 
-input:focus {
-    outline: none;
-    border: none;
-    border-right: 2px dotted var(--text-colour-light);
+form > * {
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 1px;
 }
 
 input {
-    height: 40px;
-    
-    font-size: 2rem;
-    border: none;
-    /* border-right: 2px dotted var(--background-colour-light); */
+    height: 50px;
+    /* width: 500px; */
+    background-color: transparent;
+    border: 5px solid var(--background-colour-light);
+    padding-left: 10px;
+}
+
+input:focus {
+    background-color: var(--background-colour-light);
+    outline: 1px solid var(--text-colour-light);
 }
 
 form button {
     background-color: var(--background-colour-light);
-    border: none;
-    /* text-align: center; */
-    height: 40px;
-    padding: 0px 20px;
+    border: 5px solid var(--background-colour-light);
+    border-left: none;
+    height: 50px;
+    cursor: pointer;
+    padding: 0 20px;
+}
 
-    font-size: 2rem;
+form button:hover {
+    background-color: transparent;
+}
+
+.keyboard {
+    /* border: 1px solid red; */
+    display: flex;
+    gap: 10px;
+    font-size: 1.8rem;
+}
+
+footer {
+    font-size: 1.6rem;
 }
