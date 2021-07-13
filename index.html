@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <script defer src="script.js"></script>
     <title>xkcd</title>
 </head>
 
@@ -26,16 +27,17 @@
                 <!-- API Response -->
             </div>
             <div class="buttons">
-                <button type="submit" id="prev">＜prev</button>
-                <button type="submit" id="random">random</button>
-                <button type="submit" id="next">next＞</button>
+                <!-- check ff focus -->
+                <button type="submit" id="prev" class="button">＜prev</button>
+                <button type="submit" id="random" class="button">random</button>
+                <button type="submit" id="next" class="button">next＞</button>
             </div>
             <form>
                 <p>search comic</p>
                 <label for="search" class="sr-only">search comic</label>
                 <!-- name -->
                 <input type="search" name="search" id="search" placeholder="# 1 - 2487" autocomplete="off">
-                <button type="submit">search</button>
+                <button type="submit" class="button">search</button>
             </form>
             <p class="keyboard">keyboard shortcuts:
                 <!-- update colour -->
@@ -47,17 +49,11 @@
     </main>
 
     <footer>
-        <div class="wrapper">
-            <p>&copy; Rahat Rahman 2021.</p>
-            <!-- update colour, target, accessibility-->
-            <!-- <div class="links">
-                <a href="https://github.com/rahatbd/xkcd"><img src="icons/git.svg" alt="github repo"></a>
-                <a href="https://xkcd.com/json.html">xkcd</a>
-            </div> -->
-        </div>
+        <p class="wrapper">&copy; Rahat Rahman 2021 |
+            <a href="https://github.com/rahatbd/xkcd" target="_blank" rel="noopener noreferrer">github</a> |
+            <a href="https://xkcd.com/json.html" target="_blank" rel="noopener noreferrer">xkcd</a>
+        </p>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

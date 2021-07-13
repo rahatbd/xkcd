@@ -22,8 +22,10 @@ async function fetchComic(num = '') {
     currentNum = data.num;
     if (num === '') maxNum = currentNum;
     comic.innerHTML = `
-        <h2>#${data.num}: ${data.title}</h2>
-        <p>${month[data.month]} ${data.day}, ${data.year}</p>
+        <div>
+            <h2>#${data.num}: ${data.title}</h2>
+            <p>${month[data.month]} ${data.day}, ${data.year}</p>
+        </div>
         <div>
             <img src="${data.img}" alt="${data.alt}"/>
         </div>
@@ -44,4 +46,5 @@ buttons.forEach(button => button.addEventListener('click', function() {
     }
 }))
 
+// DOMContentLoaded 1945
 fetchComic();
