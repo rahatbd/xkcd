@@ -79,22 +79,16 @@ section {
 .comic {
     /* border: 1px solid green; */
     text-align: center;
+    text-decoration-line: underline;
+    font-weight: bold;
     min-height: 400px;
-    /* text-decoration: underline double; */
 }
 
 h2 {
     text-transform: uppercase;
-    text-decoration: underline double;
-    font-weight: normal;
     margin-bottom: 10px;
 }
 
-h2 + p {
-    text-decoration: underline double;
-}
-
-/* class */
 button {
     background-color: var(--background-colour-light);
     border: 5px solid var(--background-colour-light);
@@ -105,10 +99,15 @@ button:hover {
     background-color: transparent;
 }
 
-.button:focus {
+button:focus {
+    outline: 1px solid var(--text-colour-light);
+}
+
+button:not(:focus-visible) {
     outline: none;
 }
 
+/* class */
 .button:focus-visible {
     outline: 1px solid var(--text-colour-light);
 }
@@ -134,15 +133,22 @@ form > * {
 
 input {
     height: 50px;
-    /* width: 500px; */
+    width: 200px;
     background-color: transparent;
     border: 5px solid var(--background-colour-light);
+   -moz-appearance: textfield;
     padding-left: 10px;
 }
 
 input:focus {
     background-color: var(--background-colour-light);
     outline: 1px solid var(--text-colour-light);
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+    margin: 0;
 }
 
 form button {
@@ -167,4 +173,8 @@ footer p {
     color: inherit;
     text-decoration-style: wavy;
     padding: 0 3px;
+}
+
+footer a:focus {
+    outline: 1px solid var(--text-colour-light);
 }

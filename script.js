@@ -1,7 +1,8 @@
 const comic = document.querySelector('.comic');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('button'); //class
 const form = document.querySelector('form');
-const input = document.querySelector('input[type="search"]');
+const input = form.querySelector('input');
+const label = form.querySelector('p');
 
 // const api = 'http://xkcd.com/info.0.json';
 // const proxy = 'https://secure-springs-24728.herokuapp.com/';
@@ -24,9 +25,8 @@ async function fetchComic(num = '') {
     const data = await response.json();
     currentNum = data.num;
     if (num === '') maxNum = currentNum;
-    form.search.setAttribute('placeholder', `# 1 \u2014 ${maxNum}`);
-    // form.search.setAttribute('pattern', `/^[1-9][0-9]?$|^${maxNum}$/`);
-    form.search.setAttribute('title', `# 1 -- ${maxNum}`);
+    form.search.setAttribute('max', `${maxNum}`);
+    form.search.setAttribute('placeholder', `#1 \u2014 ${maxNum}`);
     comic.innerHTML = `
         <div>
             <h2>#${data.num}: ${data.title}</h2>
@@ -36,8 +36,8 @@ async function fetchComic(num = '') {
             <img src="${data.img}" alt="${data.alt}"/>
         </div>
     `;
-    // transcript
     console.log(data);
+    // transcript
     const title = document.querySelector('title');
     title.textContent = `xkcd: ${data.title}`;
 }
@@ -56,19 +56,29 @@ function handleEvent(event) {
     }
 }
 
-function handleSubmit(event) {
+input.addEventListener('focus', function() {
+    form.submit.style.marginLeft = "1px";
+    label.textContent = `search comic range: #1 \u2014 ${maxNum}`;
+    window.removeEventListener('keydown', handleEvent);
+})
+
+input.addEventListener('blur', function () {
+    form.submit.style.marginLeft = "0";
+    label.textContent = 'search comic';
+    window.addEventListener('keydown', handleEvent);
+})
+
+form.addEventListener('submit', function(event) {
     event.preventDefault();
     fetchComic(parseInt(form.search.value));
     form.reset();
-}
-
-// input.addEventListener('focus', function() {
-//     form.search.setAttribute('value', '# ');
-// })
+    form.search.blur();
+})
 
 buttons.forEach(button => button.addEventListener('click', handleEvent));
 window.addEventListener('keydown', handleEvent);
-form.addEventListener('submit', handleSubmit);
+
+//loading states
 
 // DOMContentLoaded 1945
 fetchComic();
