@@ -106,6 +106,10 @@ button:hover {
 }
 
 .button:focus {
+    outline: none;
+}
+
+.button:focus-visible {
     outline: 1px solid var(--text-colour-light);
 }
 
