@@ -23,14 +23,12 @@ async function fetchComic(num = '') {
         `;
         return;
     }
+    loader.classList.remove('hidden');
+    section.classList.add('hidden');
     const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${num}/info.0.json`);
     const data = await response.json();
     currentNum = data.num;
     if (num === '') maxNum = currentNum;
-    if (maxNum !== undefined) {
-        loader.classList.add('hidden');
-        section.classList.remove('hidden');
-    }
     comic.innerHTML = `
         <div>
             <h2>#${data.num}: ${data.title}</h2>
@@ -42,8 +40,10 @@ async function fetchComic(num = '') {
     `;
     form.search.setAttribute('max', `${maxNum}`);
     form.search.setAttribute('placeholder', `#1 \u2014 ${maxNum}`);
-    // console.log(data);
-    // transcript
+    loader.classList.add('hidden');
+    section.classList.remove('hidden');
+    console.info(data.transcript);
+    // title
     const title = document.querySelector('title');
     title.textContent = `xkcd: ${data.title}`;
 }

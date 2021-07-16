@@ -26,7 +26,6 @@ html {
 
 body {
     font-size: 2rem;
-    /* font-size: clamp(1.5rem, 20vw, 3rem); */
     font-family: 'Indie Flower', cursive;
     letter-spacing: 1px;
     background-color: var(--background-colour-light-body);
@@ -37,11 +36,12 @@ body {
     min-height: 100vh;
 }
 
-/* img { */
+/* check all img */
+img {
     /* display: block; */
     /* height: auto; */
-    /* max-width: 100%; */
-/* } */
+    max-width: 100%;
+}
 
 .wrapper {
     max-width: 1366px;
@@ -78,23 +78,17 @@ section, .comic {
     display: grid;
     place-items: center;
     gap: 20px;
+    height: 100%;
 }
 
-/* section {
-    border: 1px solid red;
-    grid-template-rows: 1fr auto auto auto;
-    min-height: 600px;
-} */
-
 .comic {
-    /* border: 1px solid green; */
     text-align: center;
     text-decoration-line: underline;
     font-weight: bold;
-    /* min-height: 400px; */
 }
 
 h2 {
+    font-size: 2.5rem;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -125,12 +119,12 @@ button:not(:focus-visible) {
 .buttons button {
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-radius: 10px;
     margin-right: 20px;
     padding: 10px 20px;
 }
 
 form {
-    /* border: 1px solid crimson; */
     font-size: 0;
     letter-spacing: 0;
 }
@@ -146,6 +140,7 @@ input {
     width: 200px;
     background-color: transparent;
     border: 5px solid var(--background-colour-light);
+    border-radius: 10px 0 0 10px;
    -moz-appearance: textfield;
     padding-left: 10px;
 }
@@ -162,17 +157,24 @@ input::-webkit-outer-spin-button {
 }
 
 form button {
+    border-radius: 0 10px 10px 0;
     border-left: none;
     height: 50px;
     padding: 0 20px;
 }
 
-/* class */
-.keyboard {
-    /* border: 1px solid red; */
-    display: flex;
+form + p {
+    display: grid;
+    grid-auto-flow: column;
     gap: 10px;
     font-size: 1.8rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+form + p span {
+    display: flex;
+    gap: 10px;
 }
 
 footer p {
@@ -232,5 +234,45 @@ footer a:focus {
     }
     100% {
         transform: rotate(360deg)
+    }
+}
+
+@media (max-width: 550px) {
+    .buttons button {
+        display: block;
+        width: 200px;
+        margin: 0;
+    }
+
+    .buttons button:nth-child(2) {
+        margin: 20px 0;
+    }
+
+    form + p {
+        grid-auto-flow: row;
+    }
+
+    footer p span:first-child {
+        display: none;
+    }
+
+    footer p span:last-child {
+        display: block;
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 360px) {
+    form p {
+        font-size: 1.8rem;
+    }
+
+    input {
+        width: 180px;
+    }
+
+    form button {
+        width: 100px;
+        padding: 0;
     }
 }
