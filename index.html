@@ -22,7 +22,14 @@
     </header>
 
     <main>
-        <section class="wrapper">
+        <div class="loader">
+            <div class="loadingio-spinner-eclipse-z5nhkk4ceo">
+                <div class="ldio-nvwq2eh8rq">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <section class="wrapper hidden">
             <div class="comic">
                 <!-- API Response -->
             </div>
@@ -32,9 +39,10 @@
                 <button type="submit" id="next" class="button">next＞</button>
             </div>
             <form>
-                <p>search comic</p>
+                <p id="label">search comic</p>
                 <label for="search" class="sr-only">search comic</label>
-                <input type="number" name="search" id="search" min="1" autocomplete="off">
+                <input type="number" name="search" id="search" min="1" autocomplete="off" aria-describedby="label"
+                    required>
                 <button type="submit" name="submit" class="button">search</button>
             </form>
             <p class="keyboard">keyboard shortcuts:
