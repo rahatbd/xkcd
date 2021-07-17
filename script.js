@@ -1,7 +1,7 @@
-const section = document.querySelector('section');
 const loader = document.querySelector('.loader');
+const section = document.querySelector('section');
 const comic = document.querySelector('.comic');
-const buttons = document.querySelectorAll('button'); //class
+const buttons = document.querySelectorAll('.buttons button');
 const form = document.querySelector('form');
 const input = form.querySelector('input');
 const label = form.querySelector('p');
@@ -40,9 +40,12 @@ async function fetchComic(num = '') {
     `;
     form.search.setAttribute('max', `${maxNum}`);
     form.search.setAttribute('placeholder', `#1 \u2014 ${maxNum}`);
-    loader.classList.add('hidden');
-    section.classList.remove('hidden');
-    console.info(data.transcript);
+    const img = comic.querySelector('img');
+    img.addEventListener('load', function() {
+        loader.classList.add('hidden');
+        section.classList.remove('hidden');
+    })
+    // console.info(data.transcript);
     // title
     const title = document.querySelector('title');
     title.textContent = `xkcd: ${data.title}`;
