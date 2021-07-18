@@ -45,6 +45,7 @@ header, footer {
     background-color: var(--background-colour);
     text-align: center;
     padding: 10px;
+    position: relative;
 }
 
 h1 {
@@ -54,6 +55,22 @@ h1 {
 h1 + p {
     text-transform: uppercase;
     font-weight: bold;
+}
+
+/* responsive */
+.theme img {
+    position: absolute;
+    top: 30%;
+    right: 5%;
+    cursor: pointer;
+}
+
+.theme img:focus {
+    outline: 1px solid var(--font-colour);
+}
+
+.theme img:active {
+    outline: none;
 }
 
 .loader {

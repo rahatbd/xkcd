@@ -3,6 +3,13 @@ aria-describedby="desc" role="img" xmlns:xlink="http://www.w3.org/1999/xlink"
 width="20" height="20">
     <title>Space Bar</title>
     <desc>A line styled icon from Orion Icon Library.</desc>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            rect, path {
+                stroke: #f2f2f2;
+            }
+        }
+    </style>
     <rect data-name="layer2"
     x="2" y="2" width="60" height="60" rx="7.8" ry="7.8" fill="none" stroke="#202020"
     stroke-miterlimit="10" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></rect>

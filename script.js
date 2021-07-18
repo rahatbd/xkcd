@@ -1,3 +1,5 @@
+const root = document.querySelector(':root');
+const theme = document.querySelector('.theme');
 const loader = document.querySelector('.loader');
 const section = document.querySelector('section');
 const comic = document.querySelector('.comic');
@@ -10,6 +12,8 @@ const label = form.querySelector('p');
 // const proxy = 'https://secure-springs-24728.herokuapp.com/';
 
 const month = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
+const lightIcon = `<img src="icons/sunny.svg" alt="light theme" title="light theme" id="light" tabindex="0">`;
+const darkIcon = `<img src="icons/half-moon.svg" alt="dark theme" title="dark theme" id="dark" tabindex="0">`;
 let currentNum;
 let maxNum;
 
@@ -45,11 +49,42 @@ async function fetchComic(num = '') {
         loader.classList.add('hidden');
         section.classList.remove('hidden');
     })
-    // console.info(data.transcript);
+    if (data.transcript) {
+        console.info(`#${data.num}: ${data.title} \n\n${data.transcript}`);
+    }
     // title
     const title = document.querySelector('title');
     title.textContent = `xkcd: ${data.title}`;
 }
+
+function handleTheme() {
+    const iconId = theme.querySelector('img');
+    if (iconId.id === 'light') {
+        root.style.setProperty('--background-colour-body', '#f2f2f2');
+        root.style.setProperty('--background-colour', '#dddddd');
+        root.style.setProperty('--font-colour', '#404040');
+        theme.innerHTML = darkIcon;
+    }
+    else if (iconId.id === 'dark') {
+        root.style.setProperty('--background-colour-body', '#404040');
+        root.style.setProperty('--background-colour', '#202020');
+        root.style.setProperty('--font-colour', '#f2f2f2');
+        theme.innerHTML = lightIcon;
+    }
+}
+
+theme.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        handleTheme();
+    }
+})
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    const iconId = theme.querySelector('img');
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches && iconId.id === 'light') return;
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches && iconId.id === 'dark') return;
+    else handleTheme();
+});
 
 function handleEvent(event) {
     if (event.keyCode === 32 || event.keyCode === 37 || event.keyCode === 39) event.preventDefault();
@@ -68,6 +103,7 @@ function handleEvent(event) {
 input.addEventListener('focus', function() {
     form.submit.style.marginLeft = '1px';
     label.textContent = `search comic range: #1 \u2014 ${maxNum}`;
+    // remove
     window.removeEventListener('keydown', handleEvent);
 })
 
@@ -86,6 +122,8 @@ form.addEventListener('submit', function(event) {
 
 buttons.forEach(button => button.addEventListener('click', handleEvent));
 window.addEventListener('keydown', handleEvent);
+theme.addEventListener('click', handleTheme);
+window.matchMedia('(prefers-color-scheme: dark)').matches ? theme.innerHTML = lightIcon : theme.innerHTML = darkIcon;
 
 // DOMContentLoaded 1945
 fetchComic();
