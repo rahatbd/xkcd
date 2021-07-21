@@ -25,7 +25,8 @@ html {
 
 body {
     font-size: 2rem;
-    font-family: 'Indie Flower', cursive;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif; */
+    font-family: "Indie Flower", "Helvetica Neue", sans-serif;
     letter-spacing: 1px;
     background-color: var(--background-colour-body);
     color: var(--font-colour);
@@ -57,7 +58,7 @@ h1 + p {
     font-weight: bold;
 }
 
-/* responsive */
+/* grid */
 .theme img {
     position: absolute;
     top: 30%;
@@ -104,6 +105,16 @@ h2 {
 
 .comic img {
     max-width: 100%;
+}
+
+.light {
+    mix-blend-mode: multiply;
+}
+
+/* 111 */
+.dark {
+    filter: invert(100%) hue-rotate(180deg);
+    mix-blend-mode: screen;
 }
 
 button {
@@ -252,6 +263,12 @@ footer a:focus {
     }
 }
 
+@media (max-width: 750px) {
+    .theme img {
+        top: 10%;
+    }
+}
+
 @media (max-width: 550px) {
     .buttons button {
         display: block;
@@ -298,12 +315,4 @@ footer a:focus {
       --background-colour: #202020;
       --font-colour: #f2f2f2;
     }
-
-    /* .comic img {
-        opacity: 0.75;
-    }
-
-    .comic img:hover {
-        opacity: 1;
-    } */
 }
