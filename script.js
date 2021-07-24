@@ -1,5 +1,4 @@
 const root = document.querySelector(':root');
-const title = document.querySelector('title');
 const theme = document.querySelector('.theme');
 const loader = document.querySelector('.loader');
 const section = document.querySelector('section');
@@ -9,9 +8,6 @@ const form = document.querySelector('form');
 const input = form.querySelector('input');
 const label = form.querySelector('p');
 
-// const api = 'http://xkcd.com/info.0.json';
-// const proxy = 'https://secure-springs-24728.herokuapp.com/';
-
 const month = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
 const lightIcon = `<img src="assets/icons/sunny.svg" alt="light theme" title="light theme" id="light" tabindex="0">`;
 const darkIcon = `<img src="assets/icons/half-moon.svg" alt="dark theme" title="dark theme" id="dark" tabindex="0">`;
@@ -20,8 +16,8 @@ let currentNum;
 let maxNum;
 
 async function fetchComic(num = '') {
-    if (num === 404) {
-        currentNum = 404;
+    currentNum = num;
+    if (currentNum === 404) {
         comic.innerHTML = `
             <div>
                 <img class="${themeClass}" src="assets/not-found.png" alt="404 Not Found"/>
@@ -31,47 +27,19 @@ async function fetchComic(num = '') {
     }
     loader.classList.remove('hidden');
     section.classList.add('hidden');
-    if (num === '') theme.classList.add('hidden');
+    if (currentNum === '') theme.classList.add('hidden');
     window.removeEventListener('keydown', handleEvent);
-    const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${num}/info.0.json`);
+    const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${currentNum}/info.0.json`);
     const data = await response.json();
-    currentNum = data.num;
-    if (num === '') maxNum = currentNum;
+    if (currentNum === '') {
+        currentNum = data.num;
+        maxNum = currentNum;
+    }
     displayComic(data);
-    // comic.innerHTML = `
-    //     <div>
-    //         <h2>#${data.num}: ${data.title}</h2>
-    //         <p>${month[data.month]} ${data.day}, ${data.year}</p>
-    //     </div>
-    //     <div>
-    //         <img src="${data.img}" alt="${data.alt}"/>
-    //     </div>
-    // `;
-    // form.search.setAttribute('max', `${maxNum}`);
-    // form.search.setAttribute('placeholder', `#1 \u2014 ${maxNum}`);
-    // const img = comic.querySelector('img');
-    // img.addEventListener('load', function() {
-    //     loader.classList.add('hidden');
-    //     section.classList.remove('hidden');
-    // })
-    // const iconId = theme.querySelector('img');
-    // if (iconId.id === 'light') {
-    //     img.classList.add('dark');
-    //     img.classList.remove('light');
-    // }
-    // else if (iconId.id === 'dark') {
-    //     img.classList.add('light');
-    //     img.classList.remove('dark');
-    // }
-    // if (data.transcript) {
-    //     console.info(`#${data.num}: ${data.title} \n\n${data.transcript}`);
-    // }
-    // title
-    // const title = document.querySelector('title');
-    // title.textContent = `xkcd: ${data.title}`;
 }
 
 function displayComic(data) {
+    document.title = `xkcd | ${data.title}`;
     comic.innerHTML = `
         <div>
             <h2>#${data.num}: ${data.title}</h2>
@@ -85,7 +53,6 @@ function displayComic(data) {
     form.search.setAttribute('placeholder', `#1 \u2014 ${maxNum}`);
     const iconId = theme.querySelector('img');
     const img = comic.querySelector('img');
-    //404
     if (iconId.id === 'light') {
         img.classList.add('dark');
         img.classList.remove('light');
@@ -105,7 +72,6 @@ function displayComic(data) {
     if (data.transcript) {
         console.info(`#${data.num}: ${data.title} \n\n${data.transcript}`);
     }
-    title.textContent = `xkcd | ${data.title}`;
 }
 
 function handleTheme() {
@@ -117,6 +83,7 @@ function handleTheme() {
         root.style.setProperty('--font-colour', '#404040');
         img.classList.add('light');
         img.classList.remove('dark');
+        themeClass = 'light';
         theme.innerHTML = darkIcon;
     }
     else if (iconId.id === 'dark') {
@@ -125,6 +92,7 @@ function handleTheme() {
         root.style.setProperty('--font-colour', '#f2f2f2');
         img.classList.add('dark');
         img.classList.remove('light');
+        themeClass = 'dark';
         theme.innerHTML = lightIcon;
     }
 }
@@ -158,12 +126,11 @@ function handleEvent(event) {
 
 input.addEventListener('focus', function() {
     form.submit.style.marginLeft = '1px';
-    // font
-    label.textContent = `search comic range: #1 \u2014 ${maxNum}`;
+    label.textContent = `search comic: #1 \u2014 ${maxNum}`;
     window.removeEventListener('keydown', handleEvent);
 })
 
-input.addEventListener('blur', function () {
+input.addEventListener('blur', function() {
     form.submit.style.marginLeft = '0';
     label.textContent = 'search comic';
     window.addEventListener('keydown', handleEvent);
@@ -179,7 +146,7 @@ form.addEventListener('submit', function(event) {
 buttons.forEach(button => button.addEventListener('click', handleEvent));
 window.addEventListener('keydown', handleEvent);
 theme.addEventListener('click', handleTheme);
+
 window.matchMedia('(prefers-color-scheme: dark)').matches ? theme.innerHTML = lightIcon : theme.innerHTML = darkIcon;
 
-// DOMContentLoaded 1945
 fetchComic();
