@@ -6,7 +6,7 @@
     <meta name="author" content="Rahat Rahman">
     <meta name="description" content="A webcomic of romance, sarcasm, math, and language.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="assets/favicons/favicon.ico" rel="icon" sizes="any"> -->
+    <link href="assets/favicons/favicon.ico" rel="icon" sizes="any">
     <link href="assets/favicons/favicon.png" rel="icon" type="image/png">
     <link href="assets/favicons/favicon.svg" rel="icon" type="image/svg+xml">
     <link href="assets/favicons/apple-touch-icon.png" rel="apple-touch-icon">
@@ -43,6 +43,7 @@
                 <!-- API Response -->
             </div>
             <div class="buttons">
+                <!-- TODO: remove iOS hover effect -->
                 <button type="submit" id="prev" class="button">＜prev</button>
                 <button type="submit" id="random" class="button">random</button>
                 <button type="submit" id="next" class="button">next＞</button>
@@ -50,8 +51,8 @@
             <form>
                 <p id="label">search comic</p>
                 <label for="search" class="sr-only">search comic</label>
-                <input type="number" name="search" id="search" min="1" autocomplete="off" aria-describedby="label"
-                    required>
+                <input type="number" inputmode="decimal" name="search" id="search" min="1" autocomplete="off"
+                    aria-describedby="label" required>
                 <button type="submit" name="submit" class="button">search</button>
             </form>
             <p>keyboard shortcuts:

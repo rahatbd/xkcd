@@ -20,7 +20,7 @@ async function fetchComic(num = '') {
     if (currentNum === 404) {
         comic.innerHTML = `
             <div>
-                <img class="${themeClass}" src="assets/not-found.png" alt="404 Not Found"/>
+                <img class="${themeClass}" src="assets/images/not-found.png" alt="404 Not Found"/>
             </div>
         `;
         return;
