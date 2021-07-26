@@ -307,6 +307,12 @@ footer a:focus {
     }
 }
 
+@media (hover: none) {
+    button:hover {
+        background-color: var(--background-colour);
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
       --background-colour-body: #404040;
