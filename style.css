@@ -13,6 +13,12 @@ html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}
 
 /* ⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗ */
 
+/* Variable font example from Grow Decovar Demo at https://variablefonts.dev/posts/grow-decovar-demo/ */
+@font-face {
+    font-family: "Decovar Regular24";
+    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Decovar-VF.ttf);
+}
+
 :root {
   --background-colour-body: #f2f2f2;
   --background-colour: #dddddd;
@@ -49,7 +55,10 @@ header, footer {
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 5rem;
+    font-family: "Decovar Regular24";
+    font-variation-settings: "INLN" 400, "SWRM" 1000;
+    animation: grow 3s linear infinite alternate;
 }
 
 h1 + p {
@@ -257,6 +266,15 @@ footer a:focus {
     }
     100% {
         transform: rotate(360deg)
+    }
+}
+
+@keyframes grow {
+    0% {
+        font-variation-settings: "INLN" 400, "SWRM" 1000;
+    }
+    100% {
+        font-variation-settings: "INLN" 400, "SWRM" 0;
     }
 }
 

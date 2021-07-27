@@ -1,10 +1,10 @@
-# **[xkcd](https://rahatrahman.com/xkcd/)**
+# xkcd
 
-An xkcd comic viewer app made using HTML, CSS and JavaScript. Navigate to the next or previous issue or read xkcd comics randomly. Search any comics from the archives (excluding 404)! The app is:
+An xkcd comic viewer site made using HTML, CSS and JavaScript. Navigate to the next or previous issue or view xkcd comics randomly. Search any comics from the archives (excluding 404)! The site is:
 
 * Fully responsive.
 * Keyboard accessible.
-* Supports light/dark theme.
+* Supports light & dark theme.
 
 ## Light Theme
 ![light theme screenshot](assets/images/screenshot-light.png)
@@ -13,4 +13,4 @@ An xkcd comic viewer app made using HTML, CSS and JavaScript. Navigate to the ne
 ![dark theme screenshot](assets/images/screenshot-dark.png)
 
 --------------------------------------------------------------------
-Comics provided by the xkcd comic [API](https://xkcd.com/json.html).
+© Rahat Rahman 2021 | [portfolio](https://rahatrahman.com/) | [github](https://github.com/rahatbd/xkcd) | [xkcd](https://xkcd.com/json.html)
