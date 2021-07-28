@@ -167,6 +167,7 @@ form > * {
 }
 
 input {
+   -webkit-appearance: none;
     height: 50px;
     width: 200px;
     background-color: transparent;
