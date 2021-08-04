@@ -12,5 +12,5 @@ An xkcd comic viewer site built using HTML, CSS and JavaScript. Navigate to the 
 ## Dark Theme
 ![dark theme screenshot](assets/images/screenshot-dark.png)
 
---------------------------------------------------------------------
+---
 © Rahat Rahman 2021 | [portfolio](https://rahatrahman.com) | [github](https://github.com/rahatbd) | [xkcd](https://xkcd.com/json.html)
