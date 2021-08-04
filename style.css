@@ -13,12 +13,6 @@ html{box-sizing:border-box}*,*::before,*::after{box-sizing:inherit}
 
 /* ⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗⌗ */
 
-/* Variable font example from Grow Decovar Demo at https://variablefonts.dev/posts/grow-decovar-demo/ */
-@font-face {
-    font-family: "Decovar Regular24";
-    src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Decovar-VF.ttf);
-}
-
 :root {
   --background-colour-body: #f2f2f2;
   --background-colour: #dddddd;
@@ -56,9 +50,6 @@ header, footer {
 
 h1 {
     font-size: 5rem;
-    font-family: "Decovar Regular24";
-    font-variation-settings: "INLN" 400, "SWRM" 1000;
-    animation: grow 3s linear infinite alternate;
 }
 
 h1 + p {
@@ -270,15 +261,6 @@ footer a:focus {
     }
 }
 
-@keyframes grow {
-    0% {
-        font-variation-settings: "INLN" 400, "SWRM" 1000;
-    }
-    100% {
-        font-variation-settings: "INLN" 400, "SWRM" 0;
-    }
-}
-
 @media (max-width: 900px) {
     header {
         text-align: left;
@@ -337,5 +319,28 @@ footer a:focus {
       --background-colour-body: #404040;
       --background-colour: #202020;
       --font-colour: #f2f2f2;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    /* Variable font example from Grow Decovar Demo at https://variablefonts.dev/posts/grow-decovar-demo/ */
+    @font-face {
+        font-family: "Decovar Regular24";
+        src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/209981/Decovar-VF.ttf);
+    }
+
+    h1 {
+        font-family: "Decovar Regular24";
+        font-variation-settings: "INLN" 400, "SWRM" 1000;
+        animation: grow 3s linear infinite alternate;
+    }
+
+    @keyframes grow {
+        0% {
+            font-variation-settings: "INLN" 400, "SWRM" 1000;
+        }
+        100% {
+            font-variation-settings: "INLN" 400, "SWRM" 0;
+        }
     }
 }
