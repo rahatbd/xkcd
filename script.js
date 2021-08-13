@@ -6,7 +6,7 @@ const comic = document.querySelector('.comic');
 const buttons = document.querySelectorAll('.buttons button');
 const form = document.querySelector('form');
 const input = form.querySelector('input');
-const label = form.querySelector('p');
+const label = form.querySelector('label');
 
 const month = { 1: 'Jan', 2: 'Feb', 3: 'Mar', 4: 'Apr', 5: 'May', 6: 'Jun', 7: 'Jul', 8: 'Aug', 9: 'Sep', 10: 'Oct', 11: 'Nov', 12: 'Dec' };
 const lightIcon = `<img src="assets/icons/sunny.svg" alt="light theme" title="light theme" id="light" tabindex="0">`;
