@@ -29,7 +29,8 @@ async function fetchComic(num = '') {
     section.classList.add('hidden');
     if (currentNum === '') theme.classList.add('hidden');
     window.removeEventListener('keydown', handleEvent);
-    const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${currentNum}/info.0.json`);
+    // const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${currentNum}/info.0.json`);
+    const response = await fetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://xkcd.com/${currentNum}/info.0.json`);
     const data = await response.json();
     if (currentNum === '') {
         currentNum = data.num;
