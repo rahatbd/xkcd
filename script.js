@@ -31,7 +31,8 @@ async function fetchComic(num = '') {
     window.removeEventListener('keydown', handleEvent);
     // const response = await fetch(`https://secure-springs-24728.herokuapp.com/http://xkcd.com/${currentNum}/info.0.json`);
     // const response = await fetch(`https://proxy-ugwolsldnq-uc.a.run.app/https://xkcd.com/${currentNum}/info.0.json`);
-    const response = await fetch(`https://api.allorigins.win/raw?url=https://xkcd.com/${currentNum}/info.0.json`);
+    // const response = await fetch(`https://api.allorigins.win/raw?url=https://xkcd.com/${currentNum}/info.0.json`);
+    const response = await fetch(`https://proxy.junocollege.com/https://xkcd.com/${currentNum}/info.0.json`);
     const data = await response.json();
     if (currentNum === '') {
         currentNum = data.num;
