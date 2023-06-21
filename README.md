@@ -1,4 +1,4 @@
-# xkcd
+# [xkcd v1](https://rahatbd.github.io/xkcd)
 
 An xkcd comic viewer site built using HTML, CSS and JavaScript. Navigate to the next or previous issue or view xkcd comics randomly. Search any comics from the archives (excluding 404)! The site is:
 
