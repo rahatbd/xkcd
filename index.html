@@ -1,75 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Rahat Rahman">
     <meta name="application-name" content="xkcd">
     <meta name="description" content="A webcomic of romance, sarcasm, math, and language.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="favicon.ico" rel="icon" type="image/x-icon" sizes="any">
-    <link href="assets/favicons/favicon.png" rel="icon" type="image/png">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="hsl(0 0% 87%)" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="hsl(0 0% 13%)" media="(prefers-color-scheme: dark)">
+
+    <!-- favicons -->
+    <link href="favicon.ico" rel="icon" sizes="any">
     <link href="assets/favicons/favicon.svg" rel="icon" type="image/svg+xml">
     <link href="assets/favicons/apple-touch-icon.png" rel="apple-touch-icon">
-    <link href="assets/favicons/manifest.json" rel="manifest">
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link href="assets/favicons/site.webmanifest" rel="manifest">
+
     <link href="style.css" rel="stylesheet">
-    <script defer src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>xkcd</title>
 </head>
 
 <body>
-    <header>
-        <div class="wrapper">
+    <header class="wrapper">
+        <div>
             <h1>xkcd</h1>
             <p>A webcomic of romance, sarcasm, math, and language.</p>
         </div>
-        <div class="theme">
+        <div class="theme" aria-label="switch theme" role="region">
             <!-- theme icon -->
         </div>
     </header>
 
-    <main>
-        <div class="loader">
-            <div class="loadingio-spinner-eclipse-z5nhkk4ceo">
-                <div class="ldio-nvwq2eh8rq">
-                    <div>
-                        <!-- loading icon -->
+    <main class="wrapper" data-loading="true">
+        <div class="loading centre">
+            <div class="loadingio-spinner">
+                <div class="loadingio-spinner-outer">
+                    <div class="loadingio-spinner-inner">
+                        <!-- loading spinner -->
                     </div>
                 </div>
             </div>
         </div>
-        <section class="wrapper hidden">
-            <div class="comic">
-                <!-- API Response -->
+
+        <section class="centre" aria-label="comic">
+            <article class="comic centre" aria-live="polite">
+                <!-- xkcd API -->
+            </article>
+
+            <div class="comic-buttons" aria-label="comic buttons" role="group">
+                <button id="prev" aria-label="previous">&#xff1c; Prev</button>
+                <button id="random">Random</button>
+                <button id="next">Next &#xff1e;</button>
             </div>
-            <div class="buttons">
-                <button type="submit" id="prev" class="button">＜prev</button>
-                <button type="submit" id="random" class="button">random</button>
-                <button type="submit" id="next" class="button">next＞</button>
-            </div>
+
             <form>
-                <label for="search">search comic</label>
-                <input type="number" inputmode="numeric" name="search" id="search" min="1" autocomplete="off" required>
-                <button type="submit" name="submit" class="button">search</button>
+                <label for="search">Search Comic</label>
+                <input type="number" inputmode="numeric" id="search" min="1" autocomplete="off" required>
+                <button>
+                    <!-- feathericons | MIT License | https://github.com/feathericons/feather -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-labelledby="title" aria-describedby="desc" role="img" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <title>Search</title>
+                        <desc>Search icon</desc>
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
             </form>
-            <p>keyboard shortcuts:
-                <span>
-                    <img src="assets/icons/left-arrow.svg" alt="left arrow" title="left arrow"> prev
-                    <img src="assets/icons/space-bar.svg" alt="space bar" title="space bar"> random
-                    <img src="assets/icons/right-arrow.svg" alt="right arrow" title="right arrow"> next
-                </span>
-            </p>
+
+            <div class="keyboard">
+                <p>Keyboard shortcuts:</p>
+                <div>
+                    <ul role="list">
+                        <li><kbd>P</kbd> Prev</li>
+                        <li><kbd>R</kbd> Random</li>
+                        <li><kbd>N</kbd> Next</li>
+                    </ul>
+                </div>
+            </div>
         </section>
+
+        <noscript>JavaScript is required to view xkcd comics.</noscript>
     </main>
 
-    <footer>
-        <p class="wrapper">&copy; Rahat Rahman 2021 <span>|</span>
-            <span>
-                <a href="https://rahatrahman.com" tabindex="0">portfolio</a> |
-                <a href="https://github.com/rahatbd/xkcd" target="_blank" rel="noopener noreferrer" tabindex="0">github</a> |
-                <a href="https://xkcd.com/json.html" target="_blank" rel="noopener noreferrer" tabindex="0">xkcd</a>
-            </span>
-        </p>
+    <footer class="wrapper">
+        <small>&copy; Rahat Rahman 2023</small>
+        <ul role="list">
+            <li><a href="https://rahatrahman.com">Portfolio</a></li>
+            <li><a href="https://github.com/rahatbd/xkcd" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://xkcd.com/json.html" target="_blank" rel="noopener noreferrer">xkcd</a></li>
+        </ul>
     </footer>
 </body>
 </html>
