@@ -1,16 +1,25 @@
-# [xkcd v1](https://rahatbd.github.io/xkcd)
+# xkcd
 
-An xkcd comic viewer site built using HTML, CSS and JavaScript. Navigate to the next or previous issue or view xkcd comics randomly. Search any comics from the archives (excluding 404)! The site is:
+A vanilla JavaScript xkcd comic site built using the official xkcd API. Navigate to the next or previous comic or view xkcd comics randomly. Search any comics from the archives (including 404)! Feature highlights:
 
-* Fully responsive.
+* Mobile responsive.
 * Keyboard accessible.
-* Supports light & dark theme.
+* Light and dark theme.
+* Print preview.
+
+## Tech Stack
+![HTML5](assets/icons/html5.svg)
+![CSS3](assets/icons/css3.svg)
+![JavaScript](assets/icons/javascript.svg)
 
 ## Light Theme
-![light theme screenshot](assets/images/screenshot-light.png)
+![light theme mockup](assets/images/mockup-light.webp)
 
 ## Dark Theme
-![dark theme screenshot](assets/images/screenshot-dark.png)
+![dark theme mockup](assets/images/mockup-dark.webp)
+
+## Print Preview
+![print preview](assets/images/print-preview.png)
 
 ---
-© Rahat Rahman 2021 | [portfolio](https://rahatrahman.com) | [github](https://github.com/rahatbd) | [xkcd](https://xkcd.com/json.html)
+&copy; Rahat Rahman 2023 | [Portfolio](https://rahatrahman.com) | [GitHub](https://github.com/rahatbd) | [xkcd](https://xkcd.com/json.html)
