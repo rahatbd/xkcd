@@ -12,7 +12,7 @@ const input = document.querySelector('input');
 
 const colourScheme = window.matchMedia('(prefers-color-scheme: light)');
 const proxy = 'https://proxy.junocollege.com/';
-let loading, debounce, currentTheme, currentNum, maxNum;
+let isLoading, debounce, currentTheme, currentNum, maxNum;
 
 //----------------------------------------------------------------------------------------------------------------------------//
 //                                                         UTILITIES                                                          //
@@ -136,6 +136,7 @@ async function fetchComic(num) {
             day: '1',
             year: '2008',
             img: 'assets/images/not-found.png',
+            safe_title: 'Not Found',
             alt: '404 Not Found',
             transcript: '[Instead of the regular xkcd site layout, just a white page that states on top center:]\n404 Not Found\n\n[Page-wide divider line]\n\n[Below that in a smaller font:]\nnginx'
         };
@@ -144,12 +145,12 @@ async function fetchComic(num) {
     }
 
     try {
-        loading = true;
+        isLoading = true;
         main.dataset.loading = 'true';
         const response = !num
             ? await fetch(`${proxy}https://xkcd.com/info.0.json`)
             : await fetch(`${proxy}https://xkcd.com/${num}/info.0.json`);
-        if (!response.ok) throw `Status: ${response.status} \u2014 ${response.statusText}.`;
+        if (!response.ok) throw `Status: ${response.status} ${response.statusText}`;
         const data = await response.json();
         if (!data) throw 'No xkcd comic found!';
         displayComic(data);
@@ -157,9 +158,18 @@ async function fetchComic(num) {
         console.error(error);
         main.innerHTML = `
             <div class="error centre" aria-live="polite">
-                <h2>Error</h2>
+                <h2 class="underline">Error</h2>
+                <p>Unable to fetch xkcd comic</p>
                 <p>${cleanHTML(error)}</p>
-                <p>Visit the official <a href="https://xkcd.com" target="_blank" rel="noopener noreferrer">xkcd</a> site.</p>
+                <div class="new-tab">
+                    <a href="https://xkcd.com" target="_blank" rel="noopener noreferrer">xkcd.com</a>
+                    <!-- Yandex UI Icons | MPL License | https://iconduck.com/icons/256946/in-new-tab -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-labelledby="title" aria-describedby="desc" role="img" fill="none">
+                        <title>New Tab</title>
+                        <desc>Open in new tab icon</desc>
+                        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 14a1 1 0 0 0-1 1v3.077c0 .459-.022.57-.082.684a.363.363 0 0 1-.157.157c-.113.06-.225.082-.684.082H5.923c-.459 0-.571-.022-.684-.082a.363.363 0 0 1-.157-.157c-.06-.113-.082-.225-.082-.684L4.999 5.5a.5.5 0 0 1 .5-.5l3.5.005a1 1 0 1 0 .002-2L5.501 3a2.5 2.5 0 0 0-2.502 2.5v12.577c0 .76.083 1.185.32 1.627.223.419.558.753.977.977.442.237.866.319 1.627.319h12.154c.76 0 1.185-.082 1.627-.319.419-.224.753-.558.977-.977.237-.442.319-.866.319-1.627V15a1 1 0 0 0-1-1zm-2-9.055v-.291l-.39.09A10 10 0 0 1 15.36 5H14a1 1 0 1 1 0-2l5.5.003a1.5 1.5 0 0 1 1.5 1.5V10a1 1 0 1 1-2 0V8.639c0-.757.086-1.511.256-2.249l.09-.39h-.295a10 10 0 0 1-1.411 1.775l-5.933 5.932a1 1 0 0 1-1.414-1.414l5.944-5.944A10 10 0 0 1 18 4.945z" />
+                    </svg>
+                </div>
             </div>
         `;
     }
@@ -174,17 +184,18 @@ async function fetchComic(num) {
  * @param {String} data.day        xkcd comic post day
  * @param {String} data.year       xkcd comic post year
  * @param {String} data.img        xkcd comic img url
- * @param {String} data.alt        xkcd comic alt text
+ * @param {String} data.safe_title xkcd comic alt text
+ * @param {String} data.alt        xkcd comic img title
  * @param {String} data.transcript xkcd comic transcript (when available)
  */
 function displayComic(data) {
-    let {num, title, month, day, year, img: src, alt, transcript} = data;
+    let {num, title: name, month, day, year, img: src, safe_title: alt, alt: title, transcript} = data;
     if (month.length === 1) month = `0${month}`;
     comic.innerHTML = cleanHTML(`
-        <h2>${num}: ${title}</h2>
-        <time datetime="${year}-${month}-${day}">${getMonthName(parseInt(month))} ${day}, ${year}</time>
+        <h2>${num}: ${name}</h2>
+        <time datetime="${year}-${month}-${day}" class="underline">${getMonthName(parseInt(month))} ${day}, ${year}</time>
         <div>
-            <img src="${src}" alt="${alt}">
+            <img src="${src}" alt="${alt}" title="${title}">
         </div>
     `);
 
@@ -200,10 +211,10 @@ function displayComic(data) {
     currentNum = num;
 
     comic.querySelector('img').addEventListener('load', function() {
-        loading = false;
+        isLoading = false;
         main.dataset.loading = 'false';
-        document.title = `xkcd | ${title}`;
-        if (transcript) console.info(`${num}: ${title}\n\n${transcript}`);
+        document.title = `xkcd | ${name}`;
+        if (transcript) console.info(`${num}: ${name}\n\n${transcript}`);
     })
 }
 
@@ -266,8 +277,9 @@ document.addEventListener('click', function(event) {
 document.addEventListener('keydown', function(event) {
     clearTimeout(debounce);
     debounce = setTimeout(function() {
-        if (!loading) {
+        if (!isLoading) {
             if (document.activeElement !== input) {
+                // ignore if Command or Control key is pressed
                 if (event.getModifierState('Meta') || event.getModifierState('Control')) return;
                 if (event.key === 'c') fetchComic(maxNum); //undocumented
                 else if (event.key === 'p') handlePrev();

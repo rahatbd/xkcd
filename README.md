@@ -1,13 +1,27 @@
-# xkcd
+# [xkcd](https://rahatrahman.com/xkcd)
 
-A vanilla JavaScript xkcd comic site built using the official xkcd API. Navigate to the next or previous comic or view xkcd comics randomly. Search any comics from the archives (including 404)! Feature highlights:
+A vanilla JavaScript xkcd comics site built using the official [xkcd API](https://xkcd.com/json.html). Navigate to the next or previous comic, or view xkcd comics randomly. Search for any previous comics (including 404)!
 
-* Mobile responsive.
-* Keyboard accessible.
-* Light and dark theme.
-* Print preview.
+Feature highlights:
+* Keyboard accessible
+* Responsive design
+* Light and dark theme
+* Print preview
 
-## Tech Stack
+Code highlights:
+* modern-normalize v2.0.0
+* minireset v0.0.6
+* Self-hosted variable fonts
+* CSS logical properties
+* Prefers reduced motion fallback
+* Input validation
+* Error handling
+* noscript fallback
+* Debounce keyboard input
+* Sanitization to prevent XSS attacks
+* JSDoc comments
+
+## Languages
 ![HTML5](assets/icons/html5.svg)
 ![CSS3](assets/icons/css3.svg)
 ![JavaScript](assets/icons/javascript.svg)
@@ -22,4 +36,4 @@ A vanilla JavaScript xkcd comic site built using the official xkcd API. Navigate
 ![print preview](assets/images/print-preview.png)
 
 ---
-&copy; Rahat Rahman 2023 | [Portfolio](https://rahatrahman.com) | [GitHub](https://github.com/rahatbd) | [xkcd](https://xkcd.com/json.html)
+&copy; Rahat Rahman 2023
