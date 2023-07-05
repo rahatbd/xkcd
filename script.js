@@ -10,6 +10,22 @@ const form = document.querySelector('form');
 const label = document.querySelector('label');
 const input = document.querySelector('input');
 
+/**
+ * Comic data for 404: Not Found
+ * {@link https://www.explainxkcd.com/wiki/index.php/404:_Not_Found explain xkcd | 404: Not Found}
+ * @see displayComic
+ */
+const notFound = {
+    num: 404,
+    title: 'Not Found',
+    month: '4',
+    day: '1',
+    year: '2008',
+    img: 'assets/images/not-found.png',
+    safe_title: 'Not Found',
+    alt: 'Randall has stated that he considers 404 an official, actual comic, albeit a rather avant-garde one, and that for a time he made it possible to find it using the "random" button on xkcd.com.',
+    transcript: '[Instead of the regular xkcd site layout, just a white page that states on top center:]\n404 Not Found\n\n[Page-wide divider line]\n\n[Below that in a smaller font:]\nnginx'
+};
 const colourScheme = window.matchMedia('(prefers-color-scheme: light)');
 const proxy = 'https://proxy.junocollege.com/';
 let isLoading, debounce, currentTheme, currentNum, maxNum;
@@ -118,41 +134,23 @@ function getMonthName(monthNum) {
 //----------------------------------------------------------------------------------------------------------------------------//
 
 /**
- * Fetch xkcd comic from API (unless 404)
+ * Fetch xkcd comic data from API
  * @param   {Number} num xkcd comic number to fetch
  * @throws               Throws an error if fetch fails
- * @returns {Void}
  */
 async function fetchComic(num) {
-    /**
-     * {@link https://www.explainxkcd.com/wiki/index.php/404:_Not_Found explain xkcd | 404: Not Found}
-     * @see displayComic
-     */
-    if (num === 404) {
-        const data = {
-            num: num,
-            title: 'Not Found',
-            month: '4',
-            day: '1',
-            year: '2008',
-            img: 'assets/images/not-found.png',
-            safe_title: 'Not Found',
-            alt: '404 Not Found',
-            transcript: '[Instead of the regular xkcd site layout, just a white page that states on top center:]\n404 Not Found\n\n[Page-wide divider line]\n\n[Below that in a smaller font:]\nnginx'
-        };
-        displayComic(data);
-        return;
-    }
-
     try {
-        isLoading = true;
-        main.dataset.loading = 'true';
-        const response = !num
-            ? await fetch(`${proxy}https://xkcd.com/info.0.json`)
-            : await fetch(`${proxy}https://xkcd.com/${num}/info.0.json`);
-        if (!response.ok) throw `Status: ${response.status} ${response.statusText}`;
-        const data = await response.json();
-        if (!data) throw 'No xkcd comic found!';
+        let data;
+        main.dataset.loading = isLoading = true;
+        if (num === 404) data = notFound;
+        else {
+            const response = !num
+                ? await fetch(`${proxy}https://xkcd.com/info.0.json`)
+                : await fetch(`${proxy}https://xkcd.com/${num}/info.0.json`);
+            if (!response.ok) throw `Status: ${response.status} ${response.statusText}`;
+            data = await response.json();
+            if (!data) throw 'No xkcd comic found!';
+        }
         displayComic(data);
     } catch(error) {
         console.error(error);
@@ -164,10 +162,9 @@ async function fetchComic(num) {
                 <div class="new-tab">
                     <a href="https://xkcd.com" target="_blank" rel="noopener noreferrer">xkcd.com</a>
                     <!-- Yandex UI Icons | MPL License | https://iconduck.com/icons/256946/in-new-tab -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-labelledby="title" aria-describedby="desc" role="img" fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-label="open in a new tab" role="img" fill="none">
                         <title>New Tab</title>
-                        <desc>Open in new tab icon</desc>
-                        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 14a1 1 0 0 0-1 1v3.077c0 .459-.022.57-.082.684a.363.363 0 0 1-.157.157c-.113.06-.225.082-.684.082H5.923c-.459 0-.571-.022-.684-.082a.363.363 0 0 1-.157-.157c-.06-.113-.082-.225-.082-.684L4.999 5.5a.5.5 0 0 1 .5-.5l3.5.005a1 1 0 1 0 .002-2L5.501 3a2.5 2.5 0 0 0-2.502 2.5v12.577c0 .76.083 1.185.32 1.627.223.419.558.753.977.977.442.237.866.319 1.627.319h12.154c.76 0 1.185-.082 1.627-.319.419-.224.753-.558.977-.977.237-.442.319-.866.319-1.627V15a1 1 0 0 0-1-1zm-2-9.055v-.291l-.39.09A10 10 0 0 1 15.36 5H14a1 1 0 1 1 0-2l5.5.003a1.5 1.5 0 0 1 1.5 1.5V10a1 1 0 1 1-2 0V8.639c0-.757.086-1.511.256-2.249l.09-.39h-.295a10 10 0 0 1-1.411 1.775l-5.933 5.932a1 1 0 0 1-1.414-1.414l5.944-5.944A10 10 0 0 1 18 4.945z" />
+                        <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 14a1 1 0 0 0-1 1v3.077c0 .459-.022.57-.082.684a.363.363 0 0 1-.157.157c-.113.06-.225.082-.684.082H5.923c-.459 0-.571-.022-.684-.082a.363.363 0 0 1-.157-.157c-.06-.113-.082-.225-.082-.684L4.999 5.5a.5.5 0 0 1 .5-.5l3.5.005a1 1 0 1 0 .002-2L5.501 3a2.5 2.5 0 0 0-2.502 2.5v12.577c0 .76.083 1.185.32 1.627.223.419.558.753.977.977.442.237.866.319 1.627.319h12.154c.76 0 1.185-.082 1.627-.319.419-.224.753-.558.977-.977.237-.442.319-.866.319-1.627V15a1 1 0 0 0-1-1zm-2-9.055v-.291l-.39.09A10 10 0 0 1 15.36 5H14a1 1 0 1 1 0-2l5.5.003a1.5 1.5 0 0 1 1.5 1.5V10a1 1 0 1 1-2 0V8.639c0-.757.086-1.511.256-2.249l.09-.39h-.295a10 10 0 0 1-1.411 1.775l-5.933 5.932a1 1 0 0 1-1.414-1.414l5.944-5.944A10 10 0 0 1 18 4.945z"/>
                     </svg>
                 </div>
             </div>
@@ -191,6 +188,7 @@ async function fetchComic(num) {
 function displayComic(data) {
     let {num, title: name, month, day, year, img: src, safe_title: alt, alt: title, transcript} = data;
     if (month.length === 1) month = `0${month}`;
+    title = title.replaceAll('"', '&quot;');
     comic.innerHTML = cleanHTML(`
         <h2>${num}: ${name}</h2>
         <time datetime="${year}-${month}-${day}" class="underline">${getMonthName(parseInt(month))} ${day}, ${year}</time>
@@ -211,11 +209,10 @@ function displayComic(data) {
     currentNum = num;
 
     comic.querySelector('img').addEventListener('load', function() {
-        isLoading = false;
-        main.dataset.loading = 'false';
+        main.dataset.loading = isLoading = false;
         document.title = `xkcd | ${name}`;
         if (transcript) console.info(`${num}: ${name}\n\n${transcript}`);
-    })
+    });
 }
 
 /**
@@ -243,7 +240,7 @@ function handleNext() {
 }
 
 /**
- * Handle theme switch and set theme icon
+ * Handle theme switch and set theme switch icon
  * @param {Event} event The event object
  */
 function handleTheme(event) {
@@ -254,10 +251,10 @@ function handleTheme(event) {
     const tooltip = icon === 'sun' ? 'Light' : 'Dark';
     html.dataset.theme = currentTheme;
     theme.innerHTML = `
-        <button aria-labelledby="tooltip" aria-live="polite" id="icon">
+        <button aria-label="change to ${tooltip} theme" aria-live="polite" id="icon">
             <img src="assets/icons/${icon}.svg" alt="${icon} icon">
         </button>
-        <p id="tooltip">${tooltip} theme</p>
+        <p aria-hidden="true" class="tooltip">${tooltip} theme</p>
     `;
 }
 
