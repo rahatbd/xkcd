@@ -175,7 +175,6 @@ h1 + p {
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
 main {
-    position: relative;
     background-color: var(--background-colour);
     border-inline: var(--spacing) solid var(--background-colour);
     font-weight: 500;
@@ -322,10 +321,6 @@ kbd {
 }
 
 noscript {
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
     font-size: clamp(1.5rem, 1.347rem + 0.7648vi, 2rem);
     font-weight: 700;
     text-shadow: var(--text-shadow);
@@ -460,6 +455,18 @@ small {
 @media (scripting: none) {
     .loading {
         display: none;
+    }
+}
+
+/* https://caniuse.com/?search=scripting */
+@supports not (scripting: none) {
+    main {
+        position: relative;
+    }
+
+    noscript {
+        position: absolute;
+        inset: 0;
     }
 }
 
