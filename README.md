@@ -36,4 +36,4 @@ __Code Highlights:__
 ![print preview](assets/images/print-preview.png)
 
 ---
-&copy; Rahat Rahman 2023
+&copy; Rahat Rahman 2024

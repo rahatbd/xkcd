@@ -73,6 +73,7 @@ button {
     border: calc(2rem / 16) solid var(--background-colour);
     border-radius: var(--border-radius);
     cursor: pointer;
+    padding: 0;
 }
 
 a {
@@ -290,7 +291,7 @@ input::-webkit-outer-spin-button {
 form button {
     border-start-start-radius: 0;
     border-end-start-radius: 0;
-    padding: 0.25rem 0 0;
+    padding-block-start: 0.25rem;
     margin-inline-start: -0.25rem;
 }
 
@@ -506,7 +507,7 @@ small {
     }
 
     .comic-buttons button {
-        inline-size: calc(180rem / 16);
+        inline-size: calc(150rem / 16);
     }
 }
 
