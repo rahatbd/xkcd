@@ -27,7 +27,6 @@ const notFound = {
     transcript: '[Instead of the regular xkcd site layout, just a white page that states on top center:]\n404 Not Found\n\n[Page-wide divider line]\n\n[Below that in a smaller font:]\nnginx'
 };
 const colourScheme = window.matchMedia('(prefers-color-scheme: light)');
-const proxy = 'https://proxy.junocollege.com/';
 let isLoading, debounce, currentTheme, currentNum, maxNum;
 
 //----------------------------------------------------------------------------------------------------------------------------//
@@ -144,9 +143,10 @@ async function fetchComic(num) {
         main.dataset.loading = isLoading = true;
         if (num === 404) data = notFound;
         else {
+            // https://github.com/Smile4ever/xkcd-api
             const response = !num
-                ? await fetch(`${proxy}https://xkcd.com/info.0.json`)
-                : await fetch(`${proxy}https://xkcd.com/${num}/info.0.json`);
+                ? await fetch('https://xkcd.now.sh/?comic=latest')
+                : await fetch(`https://xkcd.now.sh/?comic=${num}`);
             if (!response.ok) throw `Status: ${response.status} ${response.statusText}`;
             data = await response.json();
             if (!data) throw 'No xkcd comic found!';

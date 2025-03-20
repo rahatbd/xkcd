@@ -1,4 +1,4 @@
-# [xkcd](https://rahatrahman.com/xkcd)
+# [xkcd/v2](https://rahatrahman.com/xkcd/v2)
 
 A vanilla JavaScript xkcd comics site built using the official [xkcd API](https://xkcd.com/json.html). Navigate to the next or previous comic, or view xkcd comics randomly. Search for any previous comic, including 404!
 
@@ -36,4 +36,4 @@ __Code Highlights:__
 ![print preview](assets/images/print-preview.png)
 
 ---
-&copy; Rahat Rahman 2024
+&copy; Rahat Rahman 2025
