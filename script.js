@@ -3,6 +3,7 @@
 //----------------------------------------------------------------------------------------------------------------------------//
 
 const html = document.querySelector('html');
+const favicon = document.querySelector('link[type="image/svg+xml"]');
 const theme = document.querySelector('.theme');
 const main = document.querySelector('main');
 const comic = document.querySelector('.comic');
@@ -286,6 +287,11 @@ document.addEventListener('keydown', function(event) {
         }
     }, 200);
 });
+
+document.addEventListener('visibilitychange', function() {
+    const href = document.hidden ? './assets/favicons/x-inactive.svg' : './assets/favicons/x.svg';
+    favicon.setAttribute('href', href);
+})
 
 input.addEventListener('focus', function() {
     label.textContent = `Search Comic: 1 \u2014 ${maxNum}`;
