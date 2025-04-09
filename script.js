@@ -29,7 +29,7 @@ async function fetchComic(num = '') {
     section.classList.add('hidden');
     if (currentNum === '') theme.classList.add('hidden');
     window.removeEventListener('keydown', handleEvent);
-    const response = await fetch(`https://proxy.junocollege.com/https://xkcd.com/${currentNum}/info.0.json`);
+    const response = !num ? await fetch('https://xkcd.now.sh/?comic=latest') : await fetch(`https://xkcd.now.sh/?comic=${num}`);
     const data = await response.json();
     if (currentNum === '') {
         currentNum = data.num;
