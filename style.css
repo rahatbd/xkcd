@@ -1,12 +1,23 @@
-/*----------------------------------------------------------------------------------------------------------------------------*/
-/*                                                        SETUP STYLES                                                        */
-/*----------------------------------------------------------------------------------------------------------------------------*/
+/* ═══════════════════════ */
+/* ║ •••••• RESET •••••• ║ */
+/* ═══════════════════════ */
 
-/* modern-normalize v2.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
-@layer{*,::before,::after{box-sizing:border-box}html{font-family:system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";line-height:1.15;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4}hr{height:0;color:inherit}abbr[title]{text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}button,[type="button"],[type="reset"],[type="submit"]{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px dotted ButtonText}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}}
+/* ─────────────────────────────────────────────────────────────────── */
+/* ║••• https://github.com/sindresorhus/modern-normalize │ 𝕧3.0.1 •••║ */
+/* ─────────────────────────────────────────────────────────────────── */
+@layer normalize{*,::before,::after{box-sizing:border-box}html{font-family:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';line-height:1.15;-webkit-text-size-adjust:100%;tab-size:4}body{margin:0}b,strong{font-weight:bolder}code,kbd,samp,pre{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-0.25em}sup{top:-0.5em}table{border-color:currentcolor}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,[type='button'],[type='reset'],[type='submit']{-webkit-appearance:button}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type='search']{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}}
 
-/* minireset v0.0.6 | MIT License | https://github.com/jgthms/minireset.css */
-html,body,p,ol,ul,li,dl,dt,dd,blockquote,figure,fieldset,legend,textarea,pre,iframe,hr,h1,h2,h3,h4,h5,h6{margin:0;padding:0}
+/* ───────────────────────────────────────────────────────────────── */
+/* ║••• https://github.com/elad2412/the-new-css-reset │ 𝕧1.11.3 •••║ */
+/* ───────────────────────────────────────────────────────────────── */
+@layer reset{*:where(:not(html,iframe,canvas,img,svg,video,audio):not(svg *,symbol *)){all:unset;display:revert}*,*::before,*::after{box-sizing:border-box}html{-moz-text-size-adjust:none;-webkit-text-size-adjust:none;text-size-adjust:none}a,button{cursor:revert}ol,ul,menu,summary{list-style:none}ol{counter-reset:revert}img{max-inline-size:100%;max-block-size:100%}table{border-collapse:collapse}input,textarea{-webkit-user-select:auto}textarea{white-space:revert}meter{-webkit-appearance:revert;appearance:revert}:where(pre){all:revert;box-sizing:border-box}::placeholder{color:unset}:where([hidden]){display:none}:where([contenteditable]:not([contenteditable="false"])){-moz-user-modify:read-write;-webkit-user-modify:read-write;overflow-wrap:break-word;-webkit-line-break:after-white-space;-webkit-user-select:auto}:where([draggable="true"]){-webkit-user-drag:element}:where(dialog:modal){all:revert;box-sizing:border-box}::-webkit-details-marker{display:none}}
+
+/* ─────────────────────────────────────────────────────────────────────────────────────── */
+/* ║••• https://github.com/argyleink/open-props/blob/main/src/extra/normalize.src.css •••║ */
+/* ─────────────────────────────────────────────────────────────────────────────────────── */
+:where(a[href],area,button,input:not([type="text"],[type="email"],[type="number"],[type="password"],[type=""],[type="tel"],[type="url"]),label[for],select,summary,[tabindex]:not([tabindex*="-"],pre)){cursor:pointer}
+:where(a[href],area,button,input,label[for],select,summary,textarea,[tabindex]:not([tabindex*="-"])){touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+/* @media(prefers-reduced-motion:no-preference){:where(:focus-visible){transition:outline-offset 145ms cubic-bezier(0.25,0,0.4,1)}:where(:not(:active):focus-visible){transition-duration:.25s}}:where(:not(:active):focus-visible){outline-offset:5px} */
 
 /*----------------------------------------------------------------------------------------------------------------------------*/
 /*                                                        BASE STYLES                                                         */
@@ -70,14 +81,17 @@ button {
     color: inherit;
     font-size: 1.25rem;
     font-weight: 800;
+    text-align: center;
     border: calc(2rem / 16) solid var(--background-colour);
     border-radius: var(--border-radius);
-    cursor: pointer;
+   -webkit-user-select: none;
+    user-select: none;
     padding: 0;
 }
 
 a {
     color: inherit;
+    text-decoration-line: revert;
     text-decoration-style: wavy;
     padding-inline: calc(2rem / 16);
     margin-inline: calc(-2rem / 16);
@@ -134,6 +148,7 @@ header > div {
 
 h1 {
     font-size: 4rem;
+    font-weight: 700;
 }
 
 h1 + p {
@@ -179,7 +194,6 @@ main {
     background-color: var(--background-colour);
     border-inline: var(--spacing) solid var(--background-colour);
     font-weight: 500;
-    text-align: center;
 }
 
 main > * {
@@ -253,7 +267,6 @@ form {
 
 label {
     grid-column: 1 / -1;
-    text-align: initial;
 }
 
 input {
@@ -272,6 +285,10 @@ input:focus-visible {
     outline: calc(2rem / 16) solid currentColor;
     filter: drop-shadow(var(--drop-shadow));
     transition: filter 0.2s var(--ease-out);
+}
+
+input::placeholder {
+    color: revert;
 }
 
 input:not(:placeholder-shown):invalid {
@@ -512,10 +529,6 @@ small {
 }
 
 @media (width <= calc(550rem / 16)) {
-    .keyboard p {
-        flex-basis: 100%;
-    }
-
     footer {
         flex-direction: column;
         align-items: center;
