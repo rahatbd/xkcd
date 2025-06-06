@@ -33,7 +33,7 @@
 }
 
 html {
-  --background-colour-body: hsl(0 0% 95%);
+  --background-colour-main: hsl(0 0% 95%);
   --background-colour: hsl(0 0% 87%);
   --font-colour: hsl(0 0% 25%);
   --invalid-colour: hsl(2 100% 44%);
@@ -46,7 +46,7 @@ html {
 }
 
 html[data-theme="dark"] {
-  --background-colour-body: hsl(0 0% 25%);
+  --background-colour-main: hsl(0 0% 25%);
   --background-colour: hsl(0 0% 13%);
   --font-colour: hsl(0 0% 95%);
 }
@@ -60,20 +60,20 @@ body, button, input, kbd {
 body {
     display: grid;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr [wrapper-start] min(75rem, 100%) [wrapper-end] 1fr;
     min-block-size: 100svb;
-    background-color: var(--background-colour-body);
+    background-color: var(--background-colour);
     color: var(--font-colour);
+    padding-inline: 1rem;
+
+    > * {
+        grid-column: wrapper;
+    }
 }
 
 img {
     display: block;
     max-inline-size: 100%;
-}
-
-.wrapper {
-    max-inline-size: calc(1366rem / 16);
-    inline-size: 90%;
-    margin-inline: auto;
 }
 
 button {
@@ -135,11 +135,7 @@ li {
 header {
     display: grid;
     grid-template-columns: 1fr;
-    background-color: var(--background-colour);
-    border-start-start-radius: var(--border-radius);
-    border-start-end-radius: var(--border-radius);
-    padding: var(--spacing);
-    padding-block-start: 1rem;
+    padding-block: 1rem var(--spacing);
 }
 
 header > div {
@@ -191,13 +187,11 @@ h1 + p {
 /*----------------------------------------------------------------------------------------------------------------------------*/
 
 main {
-    background-color: var(--background-colour);
-    border-inline: var(--spacing) solid var(--background-colour);
     font-weight: 500;
 }
 
 main > * {
-    background-color: var(--background-colour-body);
+    background-color: var(--background-colour-main);
     border-radius: var(--border-radius);
     box-shadow: 0 0 0.25rem inset;
     padding: var(--spacing);
@@ -222,6 +216,7 @@ main[data-loading="false"] .loading {
 h2 {
     font-size: 1.5rem;
     font-weight: 900;
+    text-align: center;
 }
 
 html[data-theme="light"] .comic img {
@@ -387,9 +382,6 @@ noscript {
 footer {
     display: flex;
     justify-content: center;
-    background-color: var(--background-colour);
-    border-end-start-radius: var(--border-radius);
-    border-end-end-radius: var(--border-radius);
     padding-block: var(--spacing);
 }
 
@@ -409,13 +401,13 @@ small {
 
 @media (prefers-color-scheme: dark) {
     html {
-      --background-colour-body: hsl(0 0% 25%);
+      --background-colour-main: hsl(0 0% 25%);
       --background-colour: hsl(0 0% 13%);
       --font-colour: hsl(0 0% 95%);
     }
 
     html[data-theme="light"] {
-      --background-colour-body: hsl(0 0% 95%);
+      --background-colour-main: hsl(0 0% 95%);
       --background-colour: hsl(0 0% 87%);
       --font-colour: hsl(0 0% 25%);
     }
@@ -492,24 +484,6 @@ small {
     .centre {
         place-content: center;
         row-gap: calc(var(--spacing) * 2);
-    }
-}
-
-@media (width <= calc(700rem / 16)) {
-    .wrapper {
-        inline-size: 100%;
-    }
-
-    header {
-        padding-inline: 1rem;
-    }
-
-    main {
-        border-inline-width: 1rem;
-    }
-
-    header, footer {
-        border-radius: 0;
     }
 }
 
