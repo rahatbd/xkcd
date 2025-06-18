@@ -33,9 +33,13 @@
 }
 
 html {
-  --background-colour-main: hsl(0 0% 95%);
-  --background-colour: hsl(0 0% 87%);
-  --font-colour: hsl(0 0% 25%);
+  --light-colour: hsl(0 0% 87%);
+  --light-colour-main: hsl(0 0% 95%);
+  --dark-colour: hsl(0 0% 13%);
+  --dark-colour-main: hsl(0 0% 25%);
+  --background-colour: light-dark(var(--light-colour), var(--dark-colour));
+  --background-colour-main: light-dark(var(--light-colour-main), var(--dark-colour-main));
+  --font-colour: light-dark(var(--dark-colour-main), var(--light-colour-main));
   --invalid-colour: hsl(2 100% 44%);
   --out-of-range-colour: hsl(35 89% 48%);
   --ease-out: cubic-bezier(0.2, 0.5, 0.25, 1);
@@ -43,12 +47,14 @@ html {
   --text-shadow: 0 calc(1rem / 16) calc(1rem / 16) currentColor;
   --border-radius: 1rem;
   --spacing: 1.5rem;
-}
 
-html[data-theme="dark"] {
-  --background-colour-main: hsl(0 0% 25%);
-  --background-colour: hsl(0 0% 13%);
-  --font-colour: hsl(0 0% 95%);
+    &[data-theme="light"] {
+        color-scheme: light;
+    }
+
+    &[data-theme="dark"] {
+        color-scheme: dark;
+    }
 }
 
 body, button, input, kbd {
@@ -398,20 +404,6 @@ small {
 /*----------------------------------------------------------------------------------------------------------------------------*/
 /*                                                        MEDIA QUERIES                                                       */
 /*----------------------------------------------------------------------------------------------------------------------------*/
-
-@media (prefers-color-scheme: dark) {
-    html {
-      --background-colour-main: hsl(0 0% 25%);
-      --background-colour: hsl(0 0% 13%);
-      --font-colour: hsl(0 0% 95%);
-    }
-
-    html[data-theme="light"] {
-      --background-colour-main: hsl(0 0% 95%);
-      --background-colour: hsl(0 0% 87%);
-      --font-colour: hsl(0 0% 25%);
-    }
-}
 
 @media (prefers-reduced-motion: no-preference) {
     /* Grow Decovar Demo | https://variablefonts.dev/posts/grow-decovar-demo */
